@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "+qqvPk81x9w=",
+  "success": true,
+  "projectFilePath": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.API\\TaskManager.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Benq\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.8\\microsoft.aspnetcore.openapi.9.0.8.nupkg.sha512",
+    "C:\\Users\\Benq\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
