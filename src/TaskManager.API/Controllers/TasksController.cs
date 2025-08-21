@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using TaskManager.Application.DTOs;
 using TaskManager.Application.Interfaces;
 using TaskManager.Domain.Entities;
+using System;
+using System.Threading.Tasks;
 
 namespace TaskManager.API.Controllers
 {
@@ -9,18 +10,67 @@ namespace TaskManager.API.Controllers
     [Route("api/[controller]")]
     public class TasksController : ControllerBase
     {
-        private readonly ITaskRepository _repo;
-        public TasksController(ITaskRepository repo) => _repo = repo;
+        private readonly ITaskService _service;
 
-        [HttpGet]
-        public async Task<IActionResult> GetTasks() => Ok(await _repo.GetAllTasksAsync());
-
-        [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] CreateTaskCommand command)
+        public TasksController(ITaskService service)
         {
-            var todo = new Todo { Title = command.Title };
-            await _repo.AddTaskAsync(todo);
-            return CreatedAtAction(nameof(GetTasks), new { id = todo.Id }, todo);
+            _service = service;
+        }
+
+        // GET: api/tasks
+        [HttpGet]
+        public async Task<IActionResult> GetTasks()
+        {
+            var tasks = await _service.GetAllTasksAsync();
+            return Ok(tasks);
+        }
+
+        // GET: api/tasks/{id}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTask(Guid id)
+        {
+            var task = await _service.GetTaskByIdAsync(id);
+            if (task == null)
+                return NotFound();
+            return Ok(task);
+        }
+
+        // POST: api/tasks
+        [HttpPost]
+        public async Task<IActionResult> CreateTask([FromBody] Todo todo)
+        {
+            if (todo == null)
+                return BadRequest();
+
+            await _service.AddTaskAsync(todo);
+            return CreatedAtAction(nameof(GetTask), new { id = todo.Id }, todo);
+        }
+
+        // PUT: api/tasks/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTask(Guid id, [FromBody] Todo todo)
+        {
+            if (todo == null || todo.Id != id)
+                return BadRequest();
+
+            var existingTask = await _service.GetTaskByIdAsync(id);
+            if (existingTask == null)
+                return NotFound();
+
+            await _service.UpdateTaskAsync(todo);
+            return NoContent();
+        }
+
+        // DELETE: api/tasks/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTask(Guid id)
+        {
+            var existingTask = await _service.GetTaskByIdAsync(id);
+            if (existingTask == null)
+                return NotFound();
+
+            await _service.DeleteTaskAsync(id);
+            return NoContent();
         }
     }
 }

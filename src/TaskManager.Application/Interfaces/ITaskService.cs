@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TaskManager.Application.Interfaces
 {
-    public interface ITaskRepository
+    public interface ITaskService
     {
         Task<List<Todo>> GetAllTasksAsync();
         Task<Todo?> GetTaskByIdAsync(Guid id);
