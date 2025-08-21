@@ -14,12 +14,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Run migrations automatically on startup
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<TaskDbContext>();
+    db.Database.Migrate();
+}
+
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
-
-// test
-
-app.MapGet("/", () => "API is running!");
