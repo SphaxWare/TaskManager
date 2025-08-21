@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "TaskManager.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/TaskManager.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManager.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TaskManager.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TaskManager.Domain/TaskManager.Domain.csproj",
+      "msbuildProject": "../TaskManager.Domain/TaskManager.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "TaskManager.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Benq\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Application\\TaskManager.Application.csproj",
+      "projectUniqueName": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Application\\TaskManager.Application.csproj",
       "projectName": "TaskManager.Application",
-      "projectPath": "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Application\\TaskManager.Application.csproj",
+      "projectPath": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Application\\TaskManager.Application.csproj",
       "packagesPath": "C:\\Users\\Benq\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Application\\obj\\",
+      "outputPath": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Benq\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -31,7 +50,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\TaskManager.Domain.csproj": {
+              "projectPath": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\TaskManager.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

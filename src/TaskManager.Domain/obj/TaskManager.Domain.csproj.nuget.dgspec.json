@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Domain\\TaskManager.Domain.csproj": {}
+    "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\TaskManager.Domain.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Domain\\TaskManager.Domain.csproj": {
+    "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\TaskManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Domain\\TaskManager.Domain.csproj",
+        "projectUniqueName": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\TaskManager.Domain.csproj",
         "projectName": "TaskManager.Domain",
-        "projectPath": "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Domain\\TaskManager.Domain.csproj",
+        "projectPath": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\TaskManager.Domain.csproj",
         "packagesPath": "C:\\Users\\Benq\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\TaskManager\\TaskManager\\TaskManager.Domain\\obj\\",
+        "outputPath": "E:\\Projects\\TaskManager\\TaskManager\\src\\TaskManager.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Benq\\AppData\\Roaming\\NuGet\\NuGet.Config"
