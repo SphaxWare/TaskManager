@@ -31,7 +31,13 @@ namespace TaskManager.Infrastructure.Repositories
 
         public async Task UpdateTaskAsync(Todo todo)
         {
-            _context.Todos.Update(todo);
+            var existing = await _context.Todos.FindAsync(todo.Id);
+            if (existing == null)
+                throw new Exception("Task not found");
+
+            existing.Title = todo.Title;
+            existing.IsCompleted = todo.IsCompleted;
+
             await _context.SaveChangesAsync();
         }
 
