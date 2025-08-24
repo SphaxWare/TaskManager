@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: TaskManager.API/Dockerfile
+    ports:
+      - "5103:5103"
+    volumes:
+      - ./tasks.db:/app/tasks.db
+    environment:
+      - ConnectionStrings__DefaultConnection=Data Source=tasks.db
+
+  frontend:
+    build:
+      context: ./frontend/taskmanager-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
