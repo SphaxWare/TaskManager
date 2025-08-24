@@ -6,6 +6,19 @@ This project allows you to manage tasks (CRUD) via a REST API and a web interfac
 
 ---
 
+## Run with Docker
+
+1. Build and start the containers
+```
+docker-compose up --build
+```
+2. Wait for both containers to start:
+- API: http://localhost:5103/swagger/index.html
+- Frontend: http://localhost:5173
+3. Stop containers:
+```
+docker-compose down
+```
 
 ---
 
@@ -74,4 +87,3 @@ Tests use xUnit and Moq.
 | POST   | `/api/tasks`      | Create a new task |
 | PUT    | `/api/tasks/{id}` | Update a task     |
 | DELETE | `/api/tasks/{id}` | Delete a task     |
-
