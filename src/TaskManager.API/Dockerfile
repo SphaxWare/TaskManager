@@ -28,4 +28,10 @@ WORKDIR /app
 
 COPY --from=build /app ./
 
+# Tell ASP.NET to listen on port 5103
+ENV ASPNETCORE_URLS=http://+:5103
+
+# Expose port
+EXPOSE 5103
+
 ENTRYPOINT ["dotnet", "TaskManager.API.dll"]
