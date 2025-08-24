@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: TaskManager.API/Dockerfile
+      dockerfile: ./src/TaskManager.API/Dockerfile
     ports:
       - "5103:5103"
     volumes:
