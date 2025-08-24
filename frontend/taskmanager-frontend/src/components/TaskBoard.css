@@ -83,3 +83,81 @@
   border: 1px solid #11ff00;
   color: white;
 }
+
+.task-text {
+  flex: 1;          
+  margin-right: 10px;  
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 253, 253);
+}
+
+.delete-btn:hover{
+  background-color: red;
+}
+
+.complete-btn:hover{
+  background-color: #11ff00;
+}
+
+.undo-btn:hover{
+  background-color: #0040ff;
+}
+
+/* Tablet & small devices */
+@media (max-width: 768px) {
+  .task-columns {
+    flex-direction: column;
+    align-items: center;     
+    gap: 20px;
+  }
+
+  .task-column input {
+    max-width: 96%;
+  }
+
+  .task-column {
+    width: 90%;            
+    max-width: 350px;        
+  }
+
+  .task-column input {
+    width: 100%;          
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .task-board {
+    margin: 5px;
+  }
+
+  .task-column {
+    width: 95%;
+    max-width: 300px;
+    padding: 8px;
+  }
+
+  .task-column input {
+    max-width: 96%;
+  }
+
+  .task-item {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+}
