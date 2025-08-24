@@ -1,0 +1,85 @@
+.task-board {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.task-input {
+  margin-bottom: 20px;
+}
+
+.task-input input {
+  padding: 8px;
+  width: 60%;
+}
+
+.task-input button {
+  padding: 8px 12px;
+  margin-left: 8px;
+}
+
+.task-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 90px;
+}
+
+.task-column input {
+  display: block;
+  width: 237px;
+  height: 23px;
+  padding: 6px;
+  margin: 6px 0;
+  background: rgb(203, 32, 32); 
+  border: 1px solid #ff5555; 
+  border-radius: 4px;          
+  color: white;               
+  outline: none;               
+}
+
+.task-column input::placeholder {
+  color: #ddd;
+}
+
+.task-column input:focus {
+  border-color: #ff5555;
+  background-color: #550000;
+}
+
+.task-column {
+  width: 250px;
+  background: #000000;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px;
+  margin: 6px 0;
+  background: rgb(85, 85, 85);
+  border: 1px solid #11ff00;
+  border-radius: 4px;
+}
+
+.task-column.uncompleted {
+  background: #1a0000;
+}
+
+.task-column.completed {
+  background: #001a00;
+}
+
+.task-column.uncompleted .task-item {
+  background: #550000;
+  border: 1px solid #ff5555;
+  color: white;
+}
+
+.task-column.completed .task-item {
+  background: #005500;
+  border: 1px solid #11ff00;
+  color: white;
+}
