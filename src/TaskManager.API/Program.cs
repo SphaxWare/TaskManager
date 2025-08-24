@@ -6,6 +6,18 @@ using TaskManager.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // vite default port
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+});
+
 // Logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -40,6 +52,9 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<TaskDbContext>();
     db.Database.Migrate();
 }
+
+// use CORS
+app.UseCors("AllowFrontend");
 
 app.UseSwagger();
 app.UseSwaggerUI();

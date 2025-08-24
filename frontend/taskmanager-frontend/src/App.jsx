@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import "./components/TaskBoard.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5103";
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
   useEffect(() => {
-    fetch("/api/Tasks")
+    fetch(`${API_URL}/api/Tasks`)
       .then((res) => res.json())
       .then((data) => setTasks(data))
       .catch(console.error);
@@ -33,7 +35,7 @@ function App() {
     setTasks(tasks.map((t) => (t.id.toString() === id ? updatedTask : t)));
 
     // Update backend
-    fetch(`/api/Tasks/${id}`, {
+    fetch(`${API_URL}/api/Tasks/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedTask),
@@ -46,7 +48,7 @@ function App() {
     const task = { title: newTask, isCompleted: completed };
 
     // Save to backend
-    fetch("/api/Tasks", {
+    fetch(`${API_URL}/api/Tasks`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(task),
@@ -63,7 +65,7 @@ function App() {
     setTasks(tasks.filter((t) => t.id !== id));
 
     // Delete from backend
-    fetch(`/api/Tasks/${id}`, { method: "DELETE" }).catch(console.error);
+    fetch(`${API_URL}/api/Tasks/${id}`, { method: "DELETE" }).catch(console.error);
   };
 
   const handleKeyDown = (e, completed) => {

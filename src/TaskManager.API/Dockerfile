@@ -1,30 +1,31 @@
-# Use .NET 9 SDK for building
+# Use the .NET 9.0 SDK image to build the app
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-WORKDIR /app
 
-# Copy csproj and restore dependencies
-COPY *.csproj ./ 
-COPY ../TaskManager.Application/*.csproj ../TaskManager.Application/
-COPY ../TaskManager.Domain/*.csproj ../TaskManager.Domain/
-COPY ../TaskManager.Infrastructure/*.csproj ../TaskManager.Infrastructure/
+WORKDIR /taskmanager
+
+# Copy the solution file
+COPY TaskManager.sln ./
+
+# Copy the project folders with their full relative paths
+COPY src/TaskManager.API/ src/TaskManager.API/
+COPY src/TaskManager.Application/ src/TaskManager.Application/
+COPY src/TaskManager.Domain/ src/TaskManager.Domain/
+COPY src/TaskManager.Infrastructure/ src/TaskManager.Infrastructure/
+
+# Restore dependencies (this uses the full folder structure, so paths must match .sln)
 RUN dotnet restore
 
-# Copy everything else and build
+# Copy everything else (source code, configs, etc)
 COPY . .
-COPY ../TaskManager.Application ../TaskManager.Application
-COPY ../TaskManager.Domain ../TaskManager.Domain
-COPY ../TaskManager.Infrastructure ../TaskManager.Infrastructure
-RUN dotnet publish -c Release -o out
 
-# Use ASP.NET runtime for running
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+# Build the project in Release mode
+RUN dotnet publish -c Release -o /app
+
+# Runtime image to run the app
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+
 WORKDIR /app
-COPY --from=build /app/out .
 
-# Expose port
-EXPOSE 5103
-
-# Environment variable for SQLite
-ENV ConnectionStrings__DefaultConnection="Data Source=tasks.db"
+COPY --from=build /app ./
 
 ENTRYPOINT ["dotnet", "TaskManager.API.dll"]
